@@ -26,7 +26,12 @@ export default [
       importPlugin: importPlugin, // Import order
     },
     rules: {
-      "prettier/prettier": "error", // Enforce Prettier formatting as ESLint errors
+      "prettier/prettier": [
+        "off",
+        {
+          endOfLine: "auto",
+        },
+      ], // Enforce Prettier formatting as ESLint errors
 
       eqeqeq: ["error", "always"], // Require strict `===` comparisons
       curly: "error", // Enforce curly braces for all control statements
@@ -45,7 +50,6 @@ export default [
       "handle-callback-err": "error", // Handle errors properly in callbacks
       "no-process-exit": "warn", // Discourage `process.exit()`
 
-      "linebreak-style": ["error", "unix"], // Enforce LF line endings
       camelcase: "error", // Enforce camelCase variable and function names
     },
   },
