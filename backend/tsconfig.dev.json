@@ -1,12 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "moduleResolution": "bundler", // Use bundler strategy (needed for bundlers like Webpack)
-    "allowImportingTsExtensions": true, // Allow TypeScript extensions in imports
-    "rewriteRelativeImportExtensions": true, // Rewrite .ts imports to .js in output
-    "noEmit": true, // Do not emit JavaScript (since we use ts-node or bundlers)
-    "sourceMap": true, // Enable source maps for debugging
-    "strict": true
+    "sourceMap": true // Enable source maps for debugging
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
