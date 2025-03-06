@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "nodenext", // Use node-style module resolution for production
+    "allowImportingTsExtensions": false, // Do not allow TypeScript extensions in production imports
+    "rewriteRelativeImportExtensions": true, // Convert .ts imports to .js in output
+    "noEmit": false, // Emit compiled JS files for production
+    "sourceMap": false, // Disable source maps for production
+    "removeComments": true, // Remove comments in production code
+    "strict": true // Keep strict type checking enabled
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
