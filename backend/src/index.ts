@@ -1,17 +1,15 @@
 import express from "express";
-import dotenv from "dotenv";
+import "dotenv/config.js";
 import userController from "./controllers/userController.ts";
 
-dotenv.config();
-
 const app: express.Express = express();
-const port = process.env.PORT || 3000;
+const port: string = process.env.PORT!;
 
 app.use("/users", express.json());
 
 app.use("/users", userController);
 
-app.get("/", (res: express.Response) => {
+app.get("/", (req: express.Request, res: express.Response) => {
   res.send("Express + TypeScript Server");
 });
 
