@@ -12,4 +12,5 @@ const userSchema = new mongoose.Schema({
   Tasks: [taskSchema],
 });
 
-export default mongoose.model("User", userSchema);
+// export default mongoose.model("User", userSchema);
+export default userSchema;

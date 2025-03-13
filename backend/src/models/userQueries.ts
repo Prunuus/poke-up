@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 import "dotenv/config.js";
-import User from "../schemas/userSchema.ts";
+import userSchema from "../schemas/userSchema.ts";
 
 // mongoose.connect(process.env.USER_DB_URL || "mongodb://localhost:27017/");
-mongoose.connect(process.env.USER_DB_URL!);
+const UserDB = mongoose.createConnection(process.env.USER_DB_URL!);
+const User = UserDB.model("user", userSchema);
+
 run();
 async function run(): Promise<void> {
   const user = new User({
