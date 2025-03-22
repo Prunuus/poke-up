@@ -36,14 +36,18 @@ export default [
       eqeqeq: ["error", "always"], // Require strict `===` comparisons
       curly: "error", // Enforce curly braces for all control statements
       "no-console": "warn", // Warn on console logs (use a logger in production)
-      "no-unused-vars": ["error", { argsIgnorePattern: "^_" }], // Ignore unused `_` vars
+      "no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ], // Ignore unused `_` vars
 
       "@typescript-eslint/explicit-function-return-type": "warn", // Warn if functions don't have return types
       "@typescript-eslint/no-explicit-any": "warn", // Avoid `any` type
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        { argsIgnorePattern: "^_" },
-      ], // Ignore unused `_` vars
+      "@typescript-eslint/no-unused-vars": "off",
+      // [
+      //   "error",
+      //   { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      // ], // Ignore unused `_` vars
       "@typescript-eslint/consistent-type-definitions": ["error", "interface"], // Enforce `interface` over `type`
 
       "callback-return": "error", // Enforce returning in callbacks

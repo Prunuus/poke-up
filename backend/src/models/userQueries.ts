@@ -1,20 +1,31 @@
 import mongoose from "mongoose";
 import "dotenv/config.js";
-import User from "../schemas/userSchema.ts";
-
+import userSchema from "../schemas/userSchema.ts";
+import { UserDTO } from "../schemas/userTypes.ts";
 // mongoose.connect(process.env.USER_DB_URL || "mongodb://localhost:27017/");
-mongoose.connect(process.env.USER_DB_URL!);
-run();
-async function run(): Promise<void> {
+const UserDB = mongoose.createConnection(process.env.USER_DB_URL!);
+const User = UserDB.model("user", userSchema);
+
+// type UserType = InferSchemaType<typeof userSchema>;
+
+// type UserDTO = Omit<UserType, "password">;
+
+export async function createUser(
+  name: string,
+  email: string,
+  password: string
+): Promise<UserDTO> {
   const user = new User({
-    name: "John Doe",
-    email: "JohnDoe@email.xyz",
-    password: "password",
+    name: name,
+    email: email,
+    password: password,
     Pokemon: [],
     Team: [],
     Exp: 0,
     Tasks: [],
   });
   await user.save();
-  console.log(user);
+  const { password: _password, ...safeUser } = user.toObject();
+  console.log(safeUser);
+  return safeUser;
 }
