@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import "dotenv/config.js";
 import userSchema from "../schemas/userSchema.ts";
-import { UserType, UserDTO } from "../schemas/userTypes.ts";
+import { UserDTO } from "../schemas/userTypes.ts";
 // mongoose.connect(process.env.USER_DB_URL || "mongodb://localhost:27017/");
 const UserDB = mongoose.createConnection(process.env.USER_DB_URL!);
 const User = UserDB.model("user", userSchema);
@@ -10,8 +10,20 @@ const User = UserDB.model("user", userSchema);
 
 // type UserDTO = Omit<UserType, "password">;
 
-export async function createUser(newUser: UserType): Promise<UserDTO> {
-  const user = new User(newUser);
+export async function createUser(
+  name: string,
+  email: string,
+  password: string
+): Promise<UserDTO> {
+  const user = new User({
+    name: name,
+    email: email,
+    password: password,
+    Pokemon: [],
+    Team: [],
+    Exp: 0,
+    Tasks: [],
+  });
   await user.save();
   const { password: _password, ...safeUser } = user.toObject();
   console.log(safeUser);
