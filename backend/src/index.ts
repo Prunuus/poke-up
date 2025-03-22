@@ -9,7 +9,7 @@ app.use("/users", express.json());
 
 app.use("/users", userController);
 
-app.get("/", (req: express.Request, res: express.Response) => {
+app.get("/", (_req: express.Request, res: express.Response) => {
   res.send("Express + TypeScript Server");
 });
 
