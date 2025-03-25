@@ -1,5 +1,5 @@
 import express from "express";
-import * as userQueries from "../models/userQueries.ts";
+import * as userServices from "../services/userServices.ts";
 
 const router = express.Router();
 
@@ -38,7 +38,11 @@ router.post(
       return;
     }
     try {
-      const createdUser = await userQueries.createUser(name, email, password);
+      const createdUser = await userServices.createUser(name, email, password);
+      if (!createdUser) {
+        res.status(409).json({ error: "Username or Email already in use" });
+        return;
+      }
       res.json({ user: createdUser });
       return;
     } catch {
