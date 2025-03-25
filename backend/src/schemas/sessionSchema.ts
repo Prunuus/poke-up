@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
-const sessionSchema = new mongoose.Schema({
+const sessionSchema: Schema<ISession> = new mongoose.Schema({
   startTime: Date,
   endTime: Date,
   duration: Number,
@@ -10,3 +10,11 @@ const sessionSchema = new mongoose.Schema({
 
 // export default mongoose.model("Session", sessionSchema);
 export default sessionSchema;
+
+export interface ISession extends Document {
+  startTime: Date;
+  endTime: Date;
+  duration: number;
+  timePaused: number;
+  taskName: string;
+}

@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 // import Task from "./taskSchema.ts";
-import taskSchema from "./taskSchema.ts";
-import userMonSchema from "./userMon.ts";
+import taskSchema, { ITask } from "./taskSchema.ts";
+import userMonSchema, { IUserMon } from "./userMon.ts";
 
-const userSchema = new mongoose.Schema({
+const userSchema: Schema<IUser> = new mongoose.Schema({
   name: String,
   email: String,
   password: String,
@@ -15,3 +15,13 @@ const userSchema = new mongoose.Schema({
 
 // export default mongoose.model("User", userSchema);
 export default userSchema;
+
+export interface IUser extends Document {
+  name: string;
+  email: string;
+  password: string;
+  Pokemon: IUserMon[];
+  Team: IUserMon[];
+  Exp: number;
+  Tasks: ITask[];
+}
