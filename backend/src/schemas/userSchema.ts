@@ -6,7 +6,7 @@ import userMonSchema, { IUserMon } from "./userMon.ts";
 const userSchema: Schema<IUser> = new mongoose.Schema({
   name: String,
   email: String,
-  password: String,
+  password: { type: String, select: false },
   pokemon: [userMonSchema],
   team: [userMonSchema],
   exp: Number,
@@ -27,6 +27,7 @@ export interface IUser extends Document {
 }
 
 export interface UserDTO {
+  _id: string;
   name: string;
   email: string;
   pokemon: IUserMon[];

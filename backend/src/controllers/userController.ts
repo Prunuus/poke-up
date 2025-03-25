@@ -8,8 +8,14 @@ router.get("/", (res: express.Response) => {
   res.json({ message: "Get all users" });
 });
 
-router.get("/:id", (req: express.Request, res: express.Response) => {
-  res.json({ message: `Get user with ID: ${req.params.id}` });
+router.get("/id/:id", async (req: express.Request, res: express.Response) => {
+  // if we add authentication inside the getuserbyid then we need might neet to pass in other things from req
+  const user = await userServices.getUserByID(req.params.id);
+  if (!user) {
+    res.status(500).json({ error: "Failed to create user" });
+    return;
+  }
+  res.json({ user: user });
 });
 
 router.post(
