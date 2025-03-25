@@ -7,10 +7,10 @@ const userSchema: Schema<IUser> = new mongoose.Schema({
   name: String,
   email: String,
   password: String,
-  Pokemon: [userMonSchema],
-  Team: [userMonSchema],
-  Exp: Number,
-  Tasks: [taskSchema],
+  pokemon: [userMonSchema],
+  team: [userMonSchema],
+  exp: Number,
+  tasks: [taskSchema],
 });
 
 // export default mongoose.model("User", userSchema);
@@ -20,8 +20,17 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
-  Pokemon: IUserMon[];
-  Team: IUserMon[];
-  Exp: number;
-  Tasks: ITask[];
+  pokemon: IUserMon[];
+  team: IUserMon[];
+  exp: number;
+  tasks: ITask[];
+}
+
+export interface UserDTO {
+  name: string;
+  email: string;
+  pokemon: IUserMon[];
+  team: IUserMon[];
+  exp: number;
+  tasks: ITask[];
 }
