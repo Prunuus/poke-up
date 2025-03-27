@@ -1,5 +1,6 @@
 import express from "express";
 import * as userServices from "../services/userServices.ts";
+import * as auth from "../services/auth.ts";
 
 const router = express.Router();
 
@@ -9,10 +10,23 @@ router.get("/", (res: express.Response) => {
 });
 
 router.get("/id/:id", async (req: express.Request, res: express.Response) => {
-  // if we add authentication inside the getuserbyid then we need might neet to pass in other things from req
+  const authHeader = req.headers["authorization"];
+  const accessToken = authHeader && authHeader.split(" ")[1];
+  const refreshToken = req.headers["refreshToken"] as string;
+  if (!accessToken || !refreshToken) {
+    res.status(401).json({ error: "Tokens are missing" });
+    return;
+  }
+  if (
+    !auth.verifyAccessToken(accessToken!) ||
+    !auth.verifyRefreshToken(refreshToken)
+  ) {
+    res.status(401).json({ error: "Unauthorized - Invalid tokens" });
+    return;
+  }
   const user = await userServices.getUserByID(req.params.id);
   if (!user) {
-    res.status(500).json({ error: "Failed to create user" });
+    res.status(404).json({ error: "User not found" });
     return;
   }
   res.json({ user: user });
@@ -49,7 +63,19 @@ router.post(
         res.status(409).json({ error: "Username or Email already in use" });
         return;
       }
-      res.json({ user: createdUser });
+      const accessToken = auth.createAccessToken(
+        createdUser._id,
+        createdUser.name
+      );
+      const refreshToken = auth.createRefreshToken(
+        createdUser._id,
+        createdUser.name
+      );
+      res.json({
+        user: createdUser,
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+      });
       return;
     } catch {
       res.status(500).json({ error: "Failed to create user" });
