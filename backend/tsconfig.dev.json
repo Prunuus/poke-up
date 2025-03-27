@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "sourceMap": true // Enable source maps for debugging
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
