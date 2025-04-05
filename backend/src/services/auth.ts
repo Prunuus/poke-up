@@ -72,10 +72,15 @@ export function authorize(
       return null;
     }
 
+    const newAccessToken = createAccessToken(
+      refreshTokenPayload.userID,
+      refreshTokenPayload.username
+    );
+
     return {
       userID: refreshTokenPayload.userID,
       username: refreshTokenPayload.username,
-      accessToken: accessToken,
+      accessToken: newAccessToken,
     };
   }
   return {
