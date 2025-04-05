@@ -13,23 +13,26 @@ router.get("/id/:id", async (req: express.Request, res: express.Response) => {
   const authHeader = req.headers["authorization"];
   const accessToken = authHeader && authHeader.split(" ")[1];
   const refreshToken = req.headers["refreshToken"] as string;
+
   if (!accessToken || !refreshToken) {
     res.status(401).json({ error: "Tokens are missing" });
     return;
   }
-  if (
-    !auth.verifyAccessToken(accessToken!) ||
-    !auth.verifyRefreshToken(refreshToken)
-  ) {
+
+  const userAuth = auth.authorize(accessToken, refreshToken);
+  if (userAuth && userAuth.userID === req.params.id) {
     res.status(401).json({ error: "Unauthorized - Invalid tokens" });
     return;
   }
+
   const user = await userServices.getUserByID(req.params.id);
   if (!user) {
-    res.status(404).json({ error: "User not found" });
+    res
+      .status(404)
+      .json({ error: "User not found", accessToken: userAuth!.accessToken });
     return;
   }
-  res.json({ user: user });
+  res.status(200).json({ user: user, accessToken: userAuth!.accessToken });
 });
 
 router.post(
@@ -71,7 +74,7 @@ router.post(
         createdUser._id,
         createdUser.name
       );
-      res.json({
+      res.status(200).json({
         user: createdUser,
         accessToken: accessToken,
         refreshToken: refreshToken,
