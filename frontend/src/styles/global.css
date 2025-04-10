@@ -1,0 +1,18 @@
+
+/* Global Properties */
+body {
+  margin: 0;
+  padding: 0;
+  background-color:black;
+}
+
+* {
+  font-family: 'Kufam', sans-serif;
+}
+
+:root {
+  --text-color: #D9D9D9;
+  --highlight-color: #F5E97E;
+}
+
+/* other */

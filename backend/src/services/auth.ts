@@ -51,6 +51,7 @@ export function verifyAccessToken(token: string): jwt.JwtPayload | null {
 }
 
 // Verify refresh token
+
 export function verifyRefreshToken(token: string): jwt.JwtPayload | null {
   try {
     return jwt.verify(
@@ -60,4 +61,38 @@ export function verifyRefreshToken(token: string): jwt.JwtPayload | null {
   } catch {
     return null; // Invalid refresh token
   }
+}
+
+export interface userJWTPayload extends JwtPayload {
+  userID: string;
+  username: string;
+  accessToken: string;
+}
+export function authorize(
+  accessToken: string,
+  refreshToken: string
+): userJWTPayload | null {
+  const accessTokenPayload = verifyAccessToken(accessToken);
+  if (!accessTokenPayload) {
+    const refreshTokenPayload = verifyRefreshToken(refreshToken);
+    if (!refreshTokenPayload) {
+      return null;
+    }
+
+    const newAccessToken = createAccessToken(
+      refreshTokenPayload.userID,
+      refreshTokenPayload.username
+    );
+
+    return {
+      userID: refreshTokenPayload.userID,
+      username: refreshTokenPayload.username,
+      accessToken: newAccessToken,
+    };
+  }
+  return {
+    userID: accessTokenPayload.userID,
+    username: accessTokenPayload.username,
+    accessToken: accessToken,
+  };
 }
