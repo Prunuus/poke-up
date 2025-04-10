@@ -8,7 +8,6 @@ export async function createUser(
   email: string,
   password: string
 ): Promise<UserDTO | null> {
-  // add authentication here
   if (await auth.isUser(name, email)) {
     return null;
   }
@@ -18,7 +17,6 @@ export async function createUser(
 }
 
 export async function getUserByID(id: string): Promise<UserDTO | null> {
-  //authentication here
   const userID = new Types.ObjectId(id);
   try {
     const user = await userQueries.getUserByID(userID);
