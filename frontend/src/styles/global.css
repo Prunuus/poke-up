@@ -69,12 +69,21 @@ body {
 }
 
 .nav-button {
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0,0,0, 0);
   color: var(--text-color);
   border: none;
   cursor: pointer;
   font-size: 2vw;
   font-weight: 700;
+  transition: transform 0.3s ease, color 0.3s ease; 
+}
+
+.nav-button:hover {
+  color: var(--highlight-color);
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.5vw;
+  text-underline-offset: 0.75vw;
+  transform: scale(1.1);
 }
 
 .foot-bar {
