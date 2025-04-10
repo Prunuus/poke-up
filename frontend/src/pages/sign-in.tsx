@@ -1,7 +1,6 @@
-import '../../styles/global.css'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import '../styles/global.css';
 
-function App() {
+function SignIn() {
 
   return (
     <>
@@ -25,6 +24,10 @@ function App() {
           </div>
         </div>
 
+        <button className="play-button">
+          <img src="../assets/PlayButton.svg" className="background"/>
+        </button>
+
 
         {/* Footer Elements */}
         <div className="foot-bar">
@@ -35,12 +38,7 @@ function App() {
 
 
       </div>
-      
-      <Router>
-        <Routes>
-          <Route  /> {/* We will add routes here later */}
-        </Routes>
-      </Router>
+    
     </>
 
       
@@ -48,4 +46,4 @@ function App() {
   )
 }
 
-export default App
+export default SignIn;
