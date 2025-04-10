@@ -1,5 +1,5 @@
 import * as userQueries from "../models/userQueries.ts";
-import { UserDTO } from "../schemas/userSchema.ts";
+import type { UserDTO } from "../schemas/userSchema.ts";
 import { Types } from "mongoose";
 import * as auth from "./auth.ts";
 
