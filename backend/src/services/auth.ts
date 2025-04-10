@@ -63,7 +63,7 @@ export function verifyRefreshToken(token: string): jwt.JwtPayload | null {
   }
 }
 
-export interface userJWTPayload extends JwtPayload {
+export interface userJWTPayload extends jwt.JwtPayload {
   userID: string;
   username: string;
   accessToken: string;
