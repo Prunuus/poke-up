@@ -11,12 +11,10 @@ const sessionSchema: Schema<ISession> = new mongoose.Schema({
 // export default mongoose.model("Session", sessionSchema);
 export default sessionSchema;
 
-interface ISession extends Document {
+export interface ISession extends Document {
   startTime: Date;
   endTime: Date;
   duration: number;
   timePaused: number;
   taskName: string;
 }
-
-export type { ISession };
