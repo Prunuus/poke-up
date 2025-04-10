@@ -1,4 +1,4 @@
-import '../styles/global.css';
+import './landing-page.css';
 
 function LandingPage() {
 

@@ -1,4 +1,4 @@
-import '../styles/global.css';
+import './sign-in.css';
 
 function SignIn() {
 
