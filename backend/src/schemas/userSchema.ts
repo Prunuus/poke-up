@@ -1,7 +1,9 @@
 import mongoose, { Schema, Document } from "mongoose";
 // import Task from "./taskSchema.ts";
-import taskSchema, { ITask } from "./taskSchema.ts";
-import userMonSchema, { IUserMon } from "./userMon.ts";
+import taskSchema from "./taskSchema.ts";
+import type { ITask } from "./taskSchema.ts";
+import userMonSchema from "./userMon.ts";
+import type { IUserMon } from "./userMon.ts";
 
 const userSchema: Schema<IUser> = new mongoose.Schema({
   name: String,

@@ -1,6 +1,7 @@
 import mongoose, { Types } from "mongoose";
 import "dotenv/config.js";
-import userSchema, { IUser, UserDTO } from "../schemas/userSchema.ts";
+import userSchema from "../schemas/userSchema.ts";
+import type { IUser, UserDTO } from "../schemas/userSchema.ts";
 
 // UserDB = mongoose.createConnection(process.env.USER_DB_URL || "mongodb://localhost:27017/");
 const UserDB = mongoose.createConnection(process.env.USER_DB_URL!);

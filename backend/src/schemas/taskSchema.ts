@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document } from "mongoose";
 // import Session from "./sessionSchema.ts";
-import sessionSchema, { ISession } from "./sessionSchema.ts";
+import sessionSchema from "./sessionSchema.ts";
+import type { ISession } from "./sessionSchema.ts";
 
 const taskSchema: Schema<ITask> = new mongoose.Schema({
   name: String,

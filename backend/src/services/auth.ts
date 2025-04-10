@@ -1,6 +1,6 @@
 import * as userQueries from "../models/userQueries.ts";
 import bcrypt from "bcrypt";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import "dotenv/config.js";
 
 export async function isUser(name: string, email: string): Promise<boolean> {
@@ -39,18 +39,24 @@ export function createRefreshToken(_id: string, name: string): string {
   );
 }
 
-export function verifyAccessToken(token: string): JwtPayload | null {
+export function verifyAccessToken(token: string): jwt.JwtPayload | null {
   try {
-    return jwt.verify(token, process.env.ACCESS_TOKEN_SECRET!) as JwtPayload;
+    return jwt.verify(
+      token,
+      process.env.ACCESS_TOKEN_SECRET!
+    ) as jwt.JwtPayload;
   } catch {
     return null; // Expired or invalid access token
   }
 }
 
 // Verify refresh token
-export function verifyRefreshToken(token: string): JwtPayload | null {
+export function verifyRefreshToken(token: string): jwt.JwtPayload | null {
   try {
-    return jwt.verify(token, process.env.REFRESH_TOKEN_SECRET!) as JwtPayload;
+    return jwt.verify(
+      token,
+      process.env.REFRESH_TOKEN_SECRET!
+    ) as jwt.JwtPayload;
   } catch {
     return null; // Invalid refresh token
   }
