@@ -1,11 +1,12 @@
 import "./sign-up.css";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUp: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
+  const toLogin = useNavigate();
   const sendLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -24,6 +25,7 @@ const SignUp: React.FC = () => {
       // Handle the response if needed
       if (response.ok) {
         console.log("User registered successfully");
+        toLogin("/login"); // Redirect to login page after successful registration
       } else {
         console.log("Failed to register user");
       }
