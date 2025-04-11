@@ -80,7 +80,8 @@ router.post(
         refreshToken: refreshToken,
       });
       return;
-    } catch {
+    } catch (error) {
+      console.log(error);
       res.status(500).json({ error: "Failed to create user" });
       return;
     }

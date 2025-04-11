@@ -1,12 +1,18 @@
 import express from "express";
 import "dotenv/config.js";
 import userController from "./controllers/userController.ts";
+import cors from "cors";
 
 const app: express.Express = express();
 const port: string = process.env.PORT!;
 
 app.use("/users", express.json());
-
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use("/users", userController);
 
 app.get("/", (_req: express.Request, res: express.Response) => {

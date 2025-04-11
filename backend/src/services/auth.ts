@@ -20,7 +20,8 @@ export async function isUser(name: string, email: string): Promise<boolean> {
 }
 
 export async function hashPassword(password: string): Promise<string> {
-  return await bcrypt.hash(password, process.env.BCRYPT_SALT_ROUNDS!);
+  const salt = await bcrypt.genSalt(Number(process.env.BCRYPT_SALT_ROUNDS!));
+  return await bcrypt.hash(password, salt);
 }
 
 export function createAccessToken(_id: string, name: string): string {
