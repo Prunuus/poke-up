@@ -6,7 +6,10 @@ const SignUp: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const toLogin = useNavigate();
+  const [error, setError] = useState<string | null>(null);
+
+  const navigate = useNavigate();
+
   const sendLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -22,12 +25,24 @@ const SignUp: React.FC = () => {
         }),
       });
 
-      // Handle the response if needed
       if (response.ok) {
         console.log("User registered successfully");
-        toLogin("/login"); // Redirect to login page after successful registration
+        setUsername("");
+        setEmail("");
+        setPassword("");
+        //set accessToken and refreshToken in local storage
+        const data = await response.json();
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        //set
+        navigate("/login"); // Redirect to login page after successful registration
       } else {
         console.log("Failed to register user");
+        setUsername("");
+        setEmail("");
+        setPassword("");
+        setError("Failed to register user.");
       }
     } catch (error) {
       console.log("Error:", error);
@@ -69,6 +84,11 @@ const SignUp: React.FC = () => {
       <div className="background-wrapper">
         <button type="submit">Sign Up</button>
       </div>
+      {error && (
+        <div className="error">
+          <p>{error}</p>
+        </div>
+      )}
     </form>
   );
 };
