@@ -2,6 +2,7 @@ import * as userQueries from "../models/userQueries.ts";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import "dotenv/config.js";
+import { UserDTO } from "../schemas/userSchema.ts";
 
 export async function isUser(name: string, email: string): Promise<boolean> {
   try {
@@ -16,6 +17,40 @@ export async function isUser(name: string, email: string): Promise<boolean> {
     return true;
   } catch {
     return true;
+  }
+}
+
+export async function authenticateUser(
+  username: string,
+  email: string,
+  password: string
+): Promise<UserDTO | null> {
+  if (!username || !email || !password) {
+    return null;
+  }
+  if (
+    typeof username !== "string" ||
+    typeof email !== "string" ||
+    typeof password !== "string"
+  ) {
+    return null;
+  }
+  const user = await userQueries.getUserByName(username);
+  if (!user) {
+    return null;
+  }
+  if (
+    user.email !== email ||
+    user.password !== (await hashPassword(password))
+  ) {
+    return null;
+  } else {
+    const userObj = user.toObject();
+    delete userObj.password;
+    userObj._id = userObj._id.toString();
+    const userDTO: UserDTO = userObj as UserDTO;
+    console.log(userDTO);
+    return userDTO as UserDTO;
   }
 }
 
@@ -68,7 +103,7 @@ export interface userJWTPayload extends jwt.JwtPayload {
   username: string;
   accessToken: string;
 }
-export function authorize(
+export function authorizeToken(
   accessToken: string,
   refreshToken: string
 ): userJWTPayload | null {
