@@ -1,20 +1,22 @@
-.background-wrapper {
+.landing-page-background-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.background {
   position: relative;
   display: block;
+  width: 100%;
+  height: 100%;
   z-index: 0;
-  width: 100%; /* Ensures the image spans the full width of the viewport */
-  height: 200vh; /* Ensures the image stretches to cover the full height of the container */
-  background-size: 100% auto; /* Stretches the image vertically while maintaining the width */
-  background-image: url('../assets/SignLoginBackground.svg');
-  background-position: center; /* Keeps the image centered */
-  background-repeat:repeat-y;
 }
 
 .foreground {
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translateX(-100%);
+  transform: translateX(-50%);
   width: 118%;
   height: auto;
   z-index: 1;

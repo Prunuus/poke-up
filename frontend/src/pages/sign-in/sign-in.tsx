@@ -4,12 +4,10 @@ function SignIn() {
 
   return (
     <>
-      <div className="background-wrapper">
+      <div className="sign-in-background-wrapper">
 
         {/* Static Background Elements */}
 
-        {/* <img src="../assets/SignLoginFrame.svg" className ="frame"/> */}
-        <img src="../../assets/SignLoginBackground.svg" className="background"/>
         <img src="../../assets/SignLoginBanner.svg" className="banner"/>
 
         {/* Navigation Elements */}

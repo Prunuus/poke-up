@@ -1,16 +1,13 @@
-.background-wrapper {
+.sign-in-background-wrapper {
     position: relative;
-    width: 100%;
-    overflow: hidden;
-    }
-    
-.background {
-position: relative;
-display: block;
-width: 100%;
-height: fit-content;
-z-index: 0;
-
+    display: block;
+    z-index: 0;
+    width: 100%; /* Ensures the image spans the full width of the viewport */
+    height: 100vh; /* Ensures the image stretches to cover the full height of the container */
+    background-size: 100% auto; /* Stretches the image vertically while maintaining the width */
+    background-image: url('../../../assets/LandingPageBackground.svg');
+    background-position: center; /* Keeps the image centered */
+    background-repeat:repeat-y;
 }
 
 .foreground {
