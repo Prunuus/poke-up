@@ -1,0 +1,204 @@
+.background-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    }
+    
+.background {
+position: relative;
+display: block;
+width: 100%;
+height: fit-content;
+z-index: 0;
+
+}
+
+.foreground {
+position: absolute;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+width: 118%;
+height: auto;
+z-index: 1;
+}
+
+.banner {
+position: absolute;
+top: 0;
+width: 100%;
+height: auto;
+z-index: 2;
+}
+
+.footer {
+position: absolute;
+bottom: 0;
+margin-left: 10%;
+width: 80%;
+height: auto;
+z-index: 2;
+}
+
+.nav-bar {
+position: absolute;
+display: flex;
+top: 3vw;
+left: 50%;
+transform: translateX(-50%);
+gap: 50vw;
+z-index: 10;
+}
+
+.nav-button {
+background-color: rgba(0,0,0,0);
+color: var(--text-color);
+border: none;
+cursor: pointer;
+font-size: 2vw;
+font-weight: 700;
+}
+
+.foot-bar {
+position: absolute;
+display: flex;
+bottom: 3vw;
+left: 50%;
+transform: translateX(-50%);
+gap: 0.5vw;
+z-index: 10;
+}
+
+.foot-button {
+width: 3.5vw;
+}
+
+
+.nav-bar-login {
+position: absolute;
+display: flex;
+top: 3vw;
+left: 50%;
+transform: translateX(-60%);
+gap: 30vw; 
+z-index: 10;
+}
+
+
+/* .frame {
+position: absolute;
+top: 55%;
+left: 50%;
+transform: translate(-50%, -50%);
+
+width: 40vw;     
+max-width: 90vw; 
+height: auto;
+
+z-index: 10;
+} */
+
+.login-container {
+
+position: absolute;
+top: 55vh;
+left: 60%;
+transform: translate(-50%, -50%);
+
+width: 34.5vw; 
+
+z-index: 10;
+padding: 2rem;
+/* border-radius: 0;  */
+background-color: rgba(34, 34, 34, 1);
+border: 10px solid rgba(26, 22, 22, 1); 
+}
+/* .login-container {
+position: absolute;
+top: 1000%; 
+left: 60%; 
+transform: translate(-50%, -50%);
+width: 40vw;  
+
+padding: 1rem;
+background-color: rgba(34, 34, 34, 1); 
+border: 10px solid rgba(26, 22, 22, 1);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+box-sizing: border-box;  
+} */
+
+
+/* Header Text */
+.welcome-header {
+text-align: center;
+color: rgba(217, 217, 217, 1); /* Text color for welcome */
+font-size: 2.5vw;
+font-weight: bold;
+margin-bottom: .5rem;
+}
+
+/* Login Form */
+.login-frame {
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+padding: 1rem;
+}
+
+
+.input-box {
+width: 29.5vw;
+padding: .5vw;  
+font-size: 1.2vw;
+font-weight: bold;
+border: 6px solid rgba(241, 238, 227, 1);
+background-color: rgba(254, 250, 235, 1);
+color: black;
+}
+.input-box::placeholder {
+color: rgba(241, 238, 227, 1); /* Set the placeholder text color */
+}
+
+.sign-in-btn {
+width: 75%; 
+padding: .2rem;
+font-size: 2vw;
+font-weight: bold;
+background-color: rgba(217, 107, 107, 1); 
+border: 5px solid rgba(188, 81, 81, 1);
+/* border-radius: 0.6rem;*/
+cursor: pointer;
+transition: background-color 0.3s ease;
+margin-left: auto;  /* Centers it horizontally */
+margin-right: auto; /* Ensures it stays centered */
+}
+
+/*sign-in Button Hover */
+.sign-in-btn:hover {
+background-color: rgba(188, 81, 81, 1);  
+}
+
+/*"Don't have an account text */
+.register-text {
+text-align: left;
+font-size: 0.9vw;
+font-weight: bold;
+color: rgba(217, 217, 217, 1); 
+margin-bottom: -1rem;
+margin-left: 4vw;
+}
+
+/* "Register here" link */
+.register-link {
+color: var(--highlight-color);
+text-decoration: none;
+font-weight: bold;
+}
+
+.register-link:hover {
+text-decoration: underline; 
+}
+

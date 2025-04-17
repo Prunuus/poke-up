@@ -7,7 +7,6 @@ function LandingPage() {
       <div className="background-wrapper">
 
         {/* Static Background Elements */}
-        <img src="../../assets/LandingPageBackground.svg" className="background"/>
         <img src="../../assets/LandingPageForeground.svg" className="foreground"/>
         <img src="../../assets/LandingPageBanner.svg" className="banner"/>
         <img src="../../assets/LandingPageFooter.svg" className="footer"/>
