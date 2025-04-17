@@ -1,14 +1,23 @@
+
 .sign-up-background-wrapper {
+
+.background-wrapper {
+
   position: relative;
   display: block;
   z-index: 0;
   width: 100%; /* Ensures the image spans the full width of the viewport */
   height: 100vh; /* Ensures the image stretches to cover the full height of the container */
   background-size: 100% auto; /* Stretches the image vertically while maintaining the width */
+
   background-image: url('../../../assets/LandingPageBackground.svg');
+
+  background-image: url('../assets/SignLoginBackground.svg');
+
   background-position: center; /* Keeps the image centered */
   background-repeat:repeat-y;
 }
+
 
 .banner {
 position: absolute;

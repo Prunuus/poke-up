@@ -11,6 +11,10 @@ function LandingPage() {
         <img src="../../../assets/LandingPageBanner.svg" className="banner"/>
         <img src="../../../assets/LandingPageFooter.svg" className="footer"/>
         <img src="../../../assets/LandingPageForeground.svg" className="foreground"/>
+        <img src="../../assets/LandingPageForeground.svg" className="foreground"/>
+        <img src="../../assets/LandingPageBanner.svg" className="banner"/>
+        <img src="../../assets/LandingPageFooter.svg" className="footer"/>
+
 
         {/* Navigation Elements */}
         <div className="nav-bar">
