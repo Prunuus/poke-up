@@ -4,7 +4,7 @@ function SignUp() {
 
   return (
     <>
-      <div className="background-wrapper">
+      <div className="sign-up-background-wrapper">
 
         {/* Static Background Elements */}
 
