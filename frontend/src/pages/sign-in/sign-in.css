@@ -9,11 +9,7 @@
     background-image: url('../../../assets/LandingPageBackground.svg');
     background-position: center; /* Keeps the image centered */
     background-repeat:repeat-y;
-.background-wrapper {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    }
+}
     
 .background {
 position: relative;
