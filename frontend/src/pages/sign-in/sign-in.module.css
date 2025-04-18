@@ -1,23 +1,14 @@
 
-.sign-in-background-wrapper {
-    position: relative;
-    display: block;
-    z-index: 0;
-    width: 100%; /* Ensures the image spans the full width of the viewport */
-    height: 100vh; /* Ensures the image stretches to cover the full height of the container */
-    background-size: 100% auto; /* Stretches the image vertically while maintaining the width */
-    background-image: url('../../../assets/LandingPageBackground.svg');
-    background-position: center; /* Keeps the image centered */
-    background-repeat:repeat-y;
-}
-    
-.background {
+.backgroundWrapper {
 position: relative;
 display: block;
-width: 100%;
-height: fit-content;
 z-index: 0;
-
+width: 100%; /* Ensures the image spans the full width of the viewport */
+height: 100vh; /* Ensures the image stretches to cover the full height of the container */
+background-size: 100% auto; /* Stretches the image vertically while maintaining the width */
+background-image: url('../../../assets/LandingPageBackground.svg');
+background-position: center; /* Keeps the image centered */
+background-repeat:repeat-y;
 }
 
 .foreground {
@@ -47,7 +38,7 @@ height: auto;
 z-index: 2;
 }
 
-.nav-bar {
+.navBar {
 position: absolute;
 display: flex;
 top: 3vw;
@@ -57,16 +48,25 @@ gap: 50vw;
 z-index: 10;
 }
 
-.nav-button {
+.navButton {
 background-color: rgba(0,0,0,0);
 color: var(--text-color);
 border: none;
 cursor: pointer;
 font-size: 2vw;
 font-weight: 700;
+transition: transform 0.3s ease, color 0.3s ease; 
 }
 
-.foot-bar {
+.navButton:hover {
+color: var(--highlight-color);
+text-decoration-line: underline;
+text-decoration-thickness: 0.5vw;
+text-underline-offset: 0.75vw;
+transform: scale(1.1);
+}
+
+.footBar {
 position: absolute;
 display: flex;
 bottom: 3vw;
@@ -76,12 +76,12 @@ gap: 0.5vw;
 z-index: 10;
 }
 
-.foot-button {
+.footButton {
 width: 3.5vw;
 }
 
 
-.nav-bar-login {
+.navBarLogin {
 position: absolute;
 display: flex;
 top: 3vw;
@@ -91,21 +91,7 @@ gap: 30vw;
 z-index: 10;
 }
 
-
-/* .frame {
-position: absolute;
-top: 55%;
-left: 50%;
-transform: translate(-50%, -50%);
-
-width: 40vw;     
-max-width: 90vw; 
-height: auto;
-
-z-index: 10;
-} */
-
-.login-container {
+.loginContainer {
 
 position: absolute;
 top: 55vh;
@@ -120,26 +106,10 @@ padding: 2rem;
 background-color: rgba(34, 34, 34, 1);
 border: 10px solid rgba(26, 22, 22, 1); 
 }
-/* .login-container {
-position: absolute;
-top: 1000%; 
-left: 60%; 
-transform: translate(-50%, -50%);
-width: 40vw;  
-
-padding: 1rem;
-background-color: rgba(34, 34, 34, 1); 
-border: 10px solid rgba(26, 22, 22, 1);
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-box-sizing: border-box;  
-} */
 
 
 /* Header Text */
-.welcome-header {
+.welcomeHeader {
 text-align: center;
 color: rgba(217, 217, 217, 1); /* Text color for welcome */
 font-size: 2.5vw;
@@ -148,7 +118,7 @@ margin-bottom: .5rem;
 }
 
 /* Login Form */
-.login-frame {
+.loginFrame {
 display: flex;
 flex-direction: column;
 gap: 1.5rem;
@@ -156,7 +126,7 @@ padding: 1rem;
 }
 
 
-.input-box {
+.inputBox {
 width: 29.5vw;
 padding: .5vw;  
 font-size: 1.2vw;
@@ -165,11 +135,11 @@ border: 6px solid rgba(241, 238, 227, 1);
 background-color: rgba(254, 250, 235, 1);
 color: black;
 }
-.input-box::placeholder {
+.inputBox::placeholder {
 color: rgba(241, 238, 227, 1); /* Set the placeholder text color */
 }
 
-.sign-in-btn {
+.signInBtn {
 width: 75%; 
 padding: .2rem;
 font-size: 2vw;
@@ -184,12 +154,12 @@ margin-right: auto; /* Ensures it stays centered */
 }
 
 /*sign-in Button Hover */
-.sign-in-btn:hover {
+.signInBtn:hover {
 background-color: rgba(188, 81, 81, 1);  
 }
 
 /*"Don't have an account text */
-.register-text {
+.registerText {
 text-align: left;
 font-size: 0.9vw;
 font-weight: bold;
@@ -199,13 +169,13 @@ margin-left: 4vw;
 }
 
 /* "Register here" link */
-.register-link {
+.registerLink {
 color: var(--highlight-color);
 text-decoration: none;
 font-weight: bold;
 }
 
-.register-link:hover {
+.registerLink:hover {
 text-decoration: underline; 
 }
 

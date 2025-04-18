@@ -1,5 +1,5 @@
 
-.landing-page-background-wrapper {
+.backgroundWrapper {
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -18,9 +18,6 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-
-  transform: translateX(-100%);
-
   width: 118%;
   height: auto;
   z-index: 1;
@@ -43,7 +40,7 @@
   z-index: 2;
 }
 
-.nav-bar {
+.navBar {
   position: absolute;
   display: flex;
   top: 3vw;
@@ -53,7 +50,7 @@
   z-index: 10;
 }
 
-.nav-button {
+.navButton {
   background-color: rgba(0,0,0, 0);
   color: var(--text-color);
   border: none;
@@ -63,7 +60,7 @@
   transition: transform 0.3s ease, color 0.3s ease; 
 }
 
-.nav-button:hover {
+.navButton:hover {
   color: var(--highlight-color);
   text-decoration-line: underline;
   text-decoration-thickness: 0.5vw;
@@ -71,7 +68,7 @@
   transform: scale(1.1);
 }
 
-.foot-bar {
+.footBar {
   position: absolute;
   display: flex;
   bottom: 3vw;
@@ -81,11 +78,11 @@
   z-index: 5;
 }
 
-.foot-button {
+.footButton {
   width: 3.5vw;
 }
 
-.play-button {
+.playButton {
   position: absolute;
   background-color: rgba(0,0,0, 0);
   border: none;
@@ -99,6 +96,6 @@
   transform-origin: center;
 }
 
-.play-button:hover {
+.playButton:hover {
   transform: translateX(-50%) scale(1.2); 
 }
