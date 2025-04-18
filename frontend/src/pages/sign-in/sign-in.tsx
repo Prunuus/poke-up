@@ -1,36 +1,36 @@
-import './sign-in.css';
+import styles from './sign-in.module.css';
 
 function SignIn() {
 
   return (
     <>
-      <div className="sign-in-background-wrapper">
+      <div className={styles.backgroundWrapper}>
 
         {/* Static Background Elements */}
 
 
         {/* <img src="../assets/SignLoginFrame.svg" className ="frame"/> */}
-        <img src="../../assets/SignLoginBackground.svg" className="background"/>
-        <img src="../../assets/SignLoginBanner.svg" className="banner"/>
+        <img src="../../assets/SignLoginBackground.svg" className={styles.backgroundWrapper}/>
+        <img src="../../assets/SignLoginBanner.svg" className={styles.banner}/>
 
         {/* Navigation Elements */}
-        <div className="nav-bar-login">
+        <div className={styles.navBarLogin}>
           <div style={ {display: "flex", gap: "7vw"} }>
-            <button className="nav-button">HOME</button>
-            <button className="nav-button">ABOUT</button>
+            <button className={styles.navButton}>HOME</button>
+            <button className={styles.navButton}>ABOUT</button>
           </div>
           <div style={{ display: "flex", gap: "4vw"}}>
-            <button className="nav-button">CREDITS</button>
+            <button className={styles.navButton}>CREDITS</button>
           </div>
 
-          <div className="login-container">
-            <div className="welcome-header">Welcome back,</div>
-            <div className="welcome-header">Trainer!</div>
-            <div className="login-frame">
-              <input type="text" placeholder="Username" className="input-box" />
-              <input type="password" placeholder="Password" className="input-box" />
-              <p className="register-text">Don't have an account? <a href="your-registration-page-url" className="register-link">Register here</a></p>
-              <button className="sign-in-btn">Sign In</button>
+          <div className={styles.loginContainer}>
+            <div className={styles.welcomeHeader}>Welcome back,</div>
+            <div className={styles.welcomeHeader}>Trainer!</div>
+            <div className={styles.loginFrame}>
+              <input type="text" placeholder="Username" className={styles.inputBox}/>
+              <input type="password" placeholder="Password" className={styles.inputBox} />
+              <p className={styles.registerText}>Don't have an account? <a href="your-registration-page-url" className={styles.registerLink}>Register here</a></p>
+              <button className={styles.signInBtn}>Sign In</button>
             </div>
           </div>
 
@@ -43,10 +43,10 @@ function SignIn() {
 
 
         {/* Footer Elements */}
-        <div className="foot-bar">
-          <img src="../assets/Instagram.svg" className="foot-button"></img>
-          <img src="../assets/Facebook.svg" className="foot-button"></img>
-          <img src="../assets/Youtube.svg" className="foot-button"></img>
+        <div className={styles.footBar}>
+          <img src="../assets/Instagram.svg" className={styles.footButton}></img>
+          <img src="../assets/Facebook.svg" className={styles.footButton}></img>
+          <img src="../assets/Youtube.svg" className={styles.footButton}></img>
         </div>
 
 
