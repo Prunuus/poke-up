@@ -23,13 +23,10 @@ export async function createUser(
   });
   await user.save();
 
-  const userDTO: UserDTO = user.toObject({
-    transform: (_doc, ret) => {
-      delete ret.password;
-      ret._id = ret._id.toString();
-      return ret;
-    },
-  });
+  const userObj = user.toObject();
+  delete userObj.password;
+  userObj._id = userObj._id.toString();
+  const userDTO: UserDTO = userObj as UserDTO;
   console.log(userDTO);
   return userDTO as UserDTO;
 }
