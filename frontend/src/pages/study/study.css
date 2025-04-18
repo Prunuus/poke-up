@@ -1,4 +1,16 @@
-.tasks-list {
+.study-background-wrapper {
+  position: relative;
+  display: block;
+  z-index: 0;
+  width: 100%; /* Ensures the image spans the full width of the viewport */
+  height: 100vh; /* Ensures the image stretches to cover the full height of the container */
+  background-size: 100% auto; /* Stretches the image vertically while maintaining the width */
+  background-image: url('../../../assets/LandingPageBackground.svg');
+  background-position: center; /* Keeps the image centered */
+  background-repeat:repeat-y;
+}
+
+.study-tasks-list {
     position: absolute;
     top: 100px;
     left: 100px;
@@ -6,7 +18,7 @@
     height: auto;
   }
 
-.input-box {
+.study-input-box {
     position: absolute;
     top: 180px;
     left: 172px;
@@ -14,7 +26,7 @@
     height:40px;
   }
 
-.plus-button {
+.study-plus-button {
     position: absolute;
     top: 180px;
     left: 123px;
@@ -26,7 +38,7 @@
     transition: transform 0.2s ease;
   }
 
-.plus-button:hover {
+.study-plus-button:hover {
     position: absolute;
     transform: scale(1.1);
 }

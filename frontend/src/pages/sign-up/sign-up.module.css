@@ -1,0 +1,175 @@
+
+.backgroundWrapper {
+  position: relative;
+  display: block;
+  z-index: 0;
+  width: 100%; /* Ensures the image spans the full width of the viewport */
+  height: 100vh; /* Ensures the image stretches to cover the full height of the container */
+  background-size: 100% auto; /* Stretches the image vertically while maintaining the width */
+  background-image: url('../../../assets/LandingPageBackground.svg');
+  background-position: center; /* Keeps the image centered */
+  background-repeat:repeat-y;
+}
+
+.banner {
+position: absolute;
+top: 0;
+width: 100%;
+height: auto;
+z-index: 2;
+}
+
+.footer {
+position: absolute;
+bottom: 0;
+margin-left: 10%;
+width: 80%;
+height: auto;
+z-index: 2;
+}
+
+.navBar {
+position: absolute;
+display: flex;
+top: 3vw;
+left: 50%;
+transform: translateX(-50%);
+gap: 50vw;
+z-index: 10;
+}
+
+.navButton {
+background-color: rgba(0,0,0,0);
+color: var(--text-color);
+border: none;
+cursor: pointer;
+font-size: 2vw;
+font-weight: 700;
+transition: transform 0.3s ease, color 0.3s ease; 
+}
+
+.navButton:hover {
+color: var(--highlight-color);
+text-decoration-line: underline;
+text-decoration-thickness: 0.5vw;
+text-underline-offset: 0.75vw;
+transform: scale(1.1);
+}
+
+.footBar {
+position: absolute;
+display: flex;
+bottom: 3vw;
+left: 50%;
+transform: translateX(-50%);
+gap: 0.5vw;
+z-index: 10;
+}
+
+.footButton {
+width: 3.5vw;
+}
+
+.navBarSignup {
+position: absolute;
+display: flex;
+top: 3vw;
+left: 50%;
+transform: translateX(-60%);
+gap: 30vw; 
+z-index: 10;
+}
+
+.signupContainer {
+position: absolute;
+top: 55vh;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 34.5vw;
+z-index: 10;
+padding: 2vw;
+background-color: rgba(34, 34, 34, 1);
+border: 10px solid rgba(26, 22, 22, 1); 
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.05vw; /* Adds spacing between child elements */
+}
+
+/* Header Text */
+.welcomeHeader {
+text-align: center;
+color: rgba(217, 217, 217, 1); /* Text color for welcome */
+font-size: 2.5vw;
+font-weight: bold;
+}
+
+/* Login Form */
+.signupFrame {
+display: flex;
+flex-direction: column;
+gap: 1vw;  /* Adjusts the gap between input fields */
+}
+
+/* Input fields */
+.inputBox {
+width: 29.5vw;
+padding: .5vw;
+font-size: 1.2vw;
+font-weight: bold;
+border: 6px solid rgba(241, 238, 227, 1);
+background-color: rgba(254, 250, 235, 1);
+color: black;
+}
+
+.inputBox::placeholder {
+color: rgba(241, 238, 227, 1); /* Set the placeholder text color */
+}
+
+/* Sign-up Button */
+.signUpBtn {
+width: 75%; 
+padding: .5rem;
+font-size: 2vw;
+font-weight: bold;
+background-color: rgba(217, 107, 107, 1); 
+border: 5px solid rgba(188, 81, 81, 1);
+cursor: pointer;
+transition: background-color 0.3s ease;
+margin-left: auto;  /* Centers it horizontally */
+margin-right: auto; /* Ensures it stays centered */
+margin-top: 1rem; /* Adds space above the button */
+}
+
+/*sign-up Button Hover */
+.signUpBtn:hover {
+  background-color: rgba(188, 81, 81, 1);  
+  }
+
+/* "Don't have an account" text */
+.registerText {
+text-align: left;
+font-size: 0.9vw;
+font-weight: bold;
+color: rgba(217, 217, 217, 1); 
+margin-top: 1rem; /* Adds space above the text */
+margin-left: 4vw;
+}
+
+/* "Register here" link */
+.loginLink {
+color: var(--highlight-color);
+text-decoration: none;
+font-weight: bold;
+}
+
+.loginLink:hover {
+text-decoration: underline; 
+}
+
+
+@media screen and (max-width: 500px) {
+.signupContainer {
+  background-color: white;
+}
+}

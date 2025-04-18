@@ -7,7 +7,7 @@ const SignUp: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-
+    
   const navigate = useNavigate();
 
   const sendLogin = async (e: React.FormEvent) => {

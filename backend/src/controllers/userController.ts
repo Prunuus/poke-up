@@ -19,8 +19,8 @@ router.get("/id/:id", async (req: express.Request, res: express.Response) => {
     return;
   }
 
-  const userAuth = auth.authorize(accessToken, refreshToken);
-  if (userAuth && userAuth.userID === req.params.id) {
+  const userAuth = auth.authorizeToken(accessToken, refreshToken);
+  if (userAuth && userAuth.userID !== req.params.id) {
     res.status(401).json({ error: "Unauthorized - Invalid tokens" });
     return;
   }
@@ -88,4 +88,35 @@ router.post(
   }
 );
 
+router.post("/login", async (req: express.Request, res: express.Response) => {
+  const authHeader = req.headers["authorization"];
+  const accessToken = authHeader && authHeader.split(" ")[1];
+  const refreshToken = req.headers["refreshToken"] as string;
+
+  if (!accessToken || !refreshToken) {
+    const user = await auth.authenticateUser(
+      req.body.name,
+      req.body.email,
+      req.body.password
+    );
+    if (!user) {
+      res.status(401).json({ error: "Invalid credentials" });
+      return;
+    }
+    const accessToken = auth.createAccessToken(user._id, user.name);
+    const refreshToken = auth.createRefreshToken(user._id, user.name);
+    res.status(200).json({
+      user: user,
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+    });
+    return;
+  }
+
+  const userAuth = auth.authorizeToken(accessToken, refreshToken);
+  if (userAuth && userAuth.userID !== req.params.id) {
+    res.status(401).json({ error: "Unauthorized - Invalid tokens" });
+    return;
+  }
+});
 export default router;
