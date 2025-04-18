@@ -1,4 +1,5 @@
 import './landing-page.css';
+import { Link } from 'react-router-dom'
 
 function LandingPage() {
 
@@ -7,6 +8,7 @@ function LandingPage() {
       <div className="background-wrapper">
 
         {/* Static Background Elements */}
+        <img src="../../assets/LandingPageBackground.svg" className="background"/>
         <img src="../../assets/LandingPageForeground.svg" className="foreground"/>
         <img src="../../assets/LandingPageBanner.svg" className="banner"/>
         <img src="../../assets/LandingPageFooter.svg" className="footer"/>
@@ -23,9 +25,11 @@ function LandingPage() {
           </div>
         </div>
 
-        <button className="play-button">
-          <img src="../../assets/PlayButton.svg" className="background"/>
-        </button>
+        <Link to="/study">
+          <button className="play-button">
+            <img src="../../assets/PlayButton.svg" className="background"/>
+          </button>
+        </Link>
 
 
         {/* Footer Elements */}

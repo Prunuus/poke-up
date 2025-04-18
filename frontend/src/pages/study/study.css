@@ -1,3 +1,18 @@
+.background-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: #F1EEE3;
+  }
+
+  .grid-column {
+    display: grid;
+    column-gap: 16px;            /* vertical spacing */
+    grid-template-columns: repeat(3, auto);
+    justify-items: center;    /* center boxes horizontally */
+    height: 100vh;           /* full height of the viewport */
+  }
+
 .tasks-list {
     position: absolute;
     top: 100px;
@@ -29,4 +44,12 @@
 .plus-button:hover {
     position: absolute;
     transform: scale(1.1);
+}
+
+.stopwatch-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }

@@ -1,18 +1,51 @@
-.stopwatch-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-  }
-  
-  .time-display {
-    font-size: 3em;
-    margin-bottom: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .toggle-button {
-    font-size: 1.5em;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
+:root {
+  --face-bg:    #F8F8F8;   /* light grey face */
+  --face-border:#CCCCCC;   /* medium grey border */
+  --time-color: #212121;   /* near black for high contrast */
+  --play-bg:    #4CAF50;   /* green (start) */
+  --stop-bg:    #F44336;   /* red   (stop)  */
+  --icon-color: #FFFFFF;   /* white icons */
+}
+
+.stopwatchContainer {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background-color: var(--face-bg);
+  border: 6px solid var(--face-border);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.stopwatchTime {
+  position: absolute;
+  top: 20%;
+  font-size: 1.8rem;
+  font-family: 'Courier New', monospace;
+  color: var(--time-color);
+}
+
+.stopwatch-button {
+  width: 70px;
+  height: 70px;
+  border: none;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  font-size: 1.4rem;
+  color: var(--icon-color);
+  transition: background-color 0.2s;
+}
+
+.stopwatch-button.paused {
+  background-color: var(--play-bg);
+}
+
+.stopwatch-button.running {
+  background-color: var(--stop-bg);
+}

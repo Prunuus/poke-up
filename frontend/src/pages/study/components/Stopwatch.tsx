@@ -1,54 +1,48 @@
-import React, { useState, useRef } from 'react';
-import './Stopwatch.css';
+import React, { useState, useRef, useEffect } from 'react'
+import { FaPlay, FaStop } from 'react-icons/fa'
+import styles from './Stopwatch.module.css'
 
-const Stopwatch: React.FC = () => {
-  // State for elapsed time (in ms) and whether the stopwatch is running.
-  const [elapsed, setElapsed] = useState<number>(0);
-  const [running, setRunning] = useState<boolean>(false);
+export default function Stopwatch() {
+  const [running, setRunning] = useState(false)
+  const [time, setTime] = useState(0)
+  const timerRef = useRef<number>(0)
 
-  // Use number type for timer ID since we're in a browser environment.
-  const timerRef = useRef<number | null>(null);
-  const startTimeRef = useRef<number>(0);
-
-  // Toggle the stopwatch between start and pause.
-  const toggleStopwatch = () => {
-    if (!running) {
-      // Calculate start time relative to previous elapsed time.
-      startTimeRef.current = Date.now() - elapsed;
+  // tick every 100ms when running
+  useEffect(() => {
+    if (running) {
       timerRef.current = window.setInterval(() => {
-        setElapsed(Date.now() - startTimeRef.current);
-      }, 1000); // update every second
-      setRunning(true);
+        setTime(t => t + 0.1)
+      }, 100)
     } else {
-      // Clear the interval to pause the stopwatch.
-      if (timerRef.current !== null) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
-      }
-      setRunning(false);
+      window.clearInterval(timerRef.current)
     }
-  };
+    return () => window.clearInterval(timerRef.current)
+  }, [running])
 
-  // Format elapsed time in HH:MM:SS.
-  const formatTime = (ms: number): string => {
-    const seconds = Math.floor((ms / 1000) % 60);
-    const minutes = Math.floor((ms / (1000 * 60)) % 60);
-    const hours = Math.floor(ms / (1000 * 60 * 60));
-    return (
-      String(hours).padStart(2, '0') + ':' +
-      String(minutes).padStart(2, '0') + ':' +
-      String(seconds).padStart(2, '0')
-    );
-  };
+  const handleToggle = () => {
+    setRunning(r => !r)
+    if (!running) setTime(0)  // reset on start
+  }
+
+  // format as MM:SS.ms
+  const minutes = Math.floor(time / 60)
+  const seconds = Math.floor(time % 60)
+  const ms = Math.floor((time - Math.floor(time)) * 100)
 
   return (
-    <div className="stopwatch-container">
-      <div className="time-display">{formatTime(elapsed)}</div>
-      <button className="toggle-button" onClick={toggleStopwatch}>
-        {running ? 'Stop' : 'Start'}
+    <div className={styles.stopwatchContainer}>
+      <div className={styles.stopwatchTime}>
+        {String(minutes).padStart(2,'0')}:
+        {String(seconds).padStart(2,'0')}.
+        {String(ms).padStart(2,'0')}
+      </div>
+      <button
+        className={`stopwatch-button ${running ? 'running' : 'paused'}`}
+        onClick={handleToggle}
+        aria-label={running ? 'Stop' : 'Start'}
+      >
+        {running ? <FaStop /> : <FaPlay />}
       </button>
     </div>
-  );
-};
-
-export default Stopwatch;
+  )
+}
