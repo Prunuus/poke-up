@@ -1,58 +1,96 @@
-import styles from './sign-up.module.css';
+import "./sign-up.css";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function SignUp() {
+const SignUp: React.FC = () => {
+  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
+    
+  const navigate = useNavigate();
+
+  const sendLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:3000/users/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: username,
+          email: email,
+          password: password,
+        }),
+      });
+
+      if (response.ok) {
+        console.log("User registered successfully");
+        setUsername("");
+        setEmail("");
+        setPassword("");
+        //set accessToken and refreshToken in local storage
+        const data = await response.json();
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        //set
+        navigate("/login"); // Redirect to login page after successful registration
+      } else {
+        console.log("Failed to register user");
+        setUsername("");
+        setEmail("");
+        setPassword("");
+        setError("Failed to register user.");
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
 
   return (
-    <>
-      <div className={styles.backgroundWrapper}>
-
-        {/* Static Background Elements */}
-
-        {/* <img src="../assets/SignLoginFrame.svg" className ="frame"/> */}
-        <img src="../assets/SignLoginBanner.svg" className={styles.banner}/>
-
-        {/* Navigation Elements */}
-        <div className={styles.navBarSignup}>
-          <div style={ {display: "flex", gap: "7vw"} }>
-            <button className={styles.navButton}>HOME</button>
-            <button className={styles.navButton}>ABOUT</button>
-          </div>
-          <div style={{ display: "flex", gap: "4vw"}}>
-            <button className={styles.navButton}>CREDITS</button>
-          </div>
+    <form onSubmit={sendLogin}>
+      <div>
+        <label htmlFor="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
+        />
+      </div>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+        />
+      </div>
+      <div>
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+      </div>
+      <div className="background-wrapper">
+        <button type="submit">Sign Up</button>
+      </div>
+      {error && (
+        <div className="error">
+          <p>{error}</p>
         </div>
-
-        <div className={styles.signupContainer}>
-          <div className={styles.welcomeHeader}>Howdy!,</div>
-          <div className={styles.welcomeHeader}>New Trainer!</div>
-          <div className={styles.signupFrame}>
-            <input type="text" placeholder="Username" className={styles.inputBox} />
-            <input type="email" placeholder="Email" className={styles.inputBox} />
-            <input type="text" placeholder="Password" className={styles.inputBox} />
-            <input type="text" placeholder="Confirm Password" className={styles.inputBox} />
-            
-            <p className={styles.registerText}>Have an account? <a href="your-registration-page-url" className={styles.loginLink}>Log In Here</a></p>
-            <button className={styles.signUpBtn}>Sign Up</button>
-          </div>
-        </div>
-
-
-        {/* Footer Elements */}
-        <div className={styles.footBar}>
-          <img src="../assets/Instagram.svg" className={styles.footButton}></img>
-          <img src="../assets/Facebook.svg" className={styles.footButton}></img>
-          <img src="../assets/Youtube.svg" className={styles.footButton}></img>
-        </div>
-
-
-        </div>
-
-    
-    </>
-
-      
-    
-  )
-}
+      )}
+    </form>
+  );
+};
 
 export default SignUp;
