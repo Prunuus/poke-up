@@ -12,8 +12,16 @@ export async function createUser(
     return null;
   }
   const hashedPassword = await auth.hashPassword(password);
-  const safeUser = await userQueries.createUser(name, email, hashedPassword);
-  return safeUser;
+  const user = await userQueries.createUser(name, email, hashedPassword);
+  if (!user) {
+    return null;
+  }
+  const userObj = user.toObject();
+  delete userObj.password;
+  userObj._id = userObj._id.toString();
+  const userDTO: UserDTO = userObj as UserDTO;
+  console.log(userDTO);
+  return userDTO as UserDTO;
 }
 
 export async function getUserByID(id: string): Promise<UserDTO | null> {

@@ -1,10 +1,13 @@
 import express from "express";
 import * as userServices from "../services/userServices.ts";
 import * as auth from "../services/auth.ts";
+import sessionRouter from "./sessionController.ts";
 
 const router = express.Router();
 
 // Define routes inside the controller file
+router.use("/sessions", sessionRouter);
+
 router.get("/", (res: express.Response) => {
   res.json({ message: "Get all users" });
 });

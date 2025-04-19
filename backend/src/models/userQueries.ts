@@ -1,7 +1,7 @@
 import mongoose, { Types } from "mongoose";
 import "dotenv/config.js";
 import userSchema from "../schemas/userSchema.ts";
-import type { IUser, UserDTO } from "../schemas/userSchema.ts";
+import type { IUser } from "../schemas/userSchema.ts";
 
 // UserDB = mongoose.createConnection(process.env.USER_DB_URL || "mongodb://localhost:27017/");
 const UserDB = mongoose.createConnection(process.env.USER_DB_URL!);
@@ -11,7 +11,7 @@ export async function createUser(
   name: string,
   email: string,
   password: string
-): Promise<UserDTO> {
+): Promise<IUser | null> {
   const user: IUser = new User({
     name: name,
     email: email,
@@ -22,13 +22,7 @@ export async function createUser(
     Tasks: [],
   });
   await user.save();
-
-  const userObj = user.toObject();
-  delete userObj.password;
-  userObj._id = userObj._id.toString();
-  const userDTO: UserDTO = userObj as UserDTO;
-  console.log(userDTO);
-  return userDTO as UserDTO;
+  return user;
 }
 
 export async function getUserByID(id: Types.ObjectId): Promise<IUser | null> {
