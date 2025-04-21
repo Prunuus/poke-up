@@ -1,7 +1,13 @@
-import { Request, Response } from "express";
+import express, { Request, Response } from "express";
 import Session from "../models/sessionModel.ts";
 
-export async function startSession(req: Request, res: Response) {
+const router = express.Router();
+export default router;
+
+router.post("/start", startSession);
+router.post("/end/:sessionId", endSession);
+
+export async function startSession(req: Request, res: Response): Promise<void> {
   try {
     const { taskName } = req.body;
 
@@ -10,27 +16,27 @@ export async function startSession(req: Request, res: Response) {
       endTime: null,
       duration: 0,
       timePaused: 0,
-      taskName
+      taskName,
     });
 
     res.status(201).json({
       success: true,
-      data: newSession
+      data: newSession,
     });
   } catch (error) {
     res.status(500).json({ success: false, error });
   }
 }
 
-
-export async function endSession(req: Request, res: Response) {
+export async function endSession(req: Request, res: Response): Promise<void> {
   try {
-    const { sessionId } = req.params;
+    const sessionId = req.params.sessionId;
 
     const session = await Session.findById(sessionId);
 
     if (!session) {
-      return res.status(404).json({ success: false, message: "Session not found" });
+      res.status(404).json({ success: false, message: "Session not found" });
+      return;
     }
 
     session.endTime = new Date();
@@ -42,7 +48,7 @@ export async function endSession(req: Request, res: Response) {
 
     res.status(200).json({
       success: true,
-      data: session
+      data: session,
     });
   } catch (error) {
     res.status(500).json({ success: false, error });
